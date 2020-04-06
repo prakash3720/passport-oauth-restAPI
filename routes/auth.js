@@ -1,7 +1,6 @@
 const express=require('express')
 const router=express.Router()
 const passport=require('passport')
-const jwt=require('jsonwebtoken')
 
 const admin=require('../config/firebase')
 let db = admin.firestore();
@@ -37,11 +36,14 @@ router.get('/amazon/redirect',passport.authenticate('amazon',{session:false}),(r
 })
 
 router.post('/get',(req,res)=>{
-    let decoded = jwt.verify(req.body.token, 'secret');
+    let decoded = enc.Decrypt(req.body.token);
     db.collection("users").doc(decoded.id).get().then(doc=>{
         res.send(doc.data())
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        console.log(err)
+        res.err(404).send({"msg":"Invalid Token"})
+    })
 })
 
 // router.get('/instagram',passport.authenticate('instagram'))

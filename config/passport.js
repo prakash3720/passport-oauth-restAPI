@@ -1,5 +1,5 @@
 const passport=require('passport')
-const jwt=require('jsonwebtoken')
+const enc = require('iv-encrypt');
 
 const admin=require('./firebase')
 let db = admin.firestore();
@@ -21,7 +21,7 @@ passport.use('amazon', new AmazonStrategy({
   passReqToCallback : true
 },
 function(req, accessToken, refreshToken, profile, done) {
-  let t=jwt.sign({id:profile.id},'secret')
+  let t=enc.Encrypt({id:profile.id})
     req.token=t
     db.collection("users").doc(profile.id).get().then(doc=>{
       if(!doc.exists){
@@ -44,7 +44,7 @@ passport.use('google', new GoogleStrategy({
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
-    let t=jwt.sign({id:profile.id},'secret')
+    let t=enc.Encrypt({id:profile.id})
     req.token=t
     db.collection("users").doc(profile.id).get().then(doc=>{
       if(!doc.exists){
@@ -67,7 +67,7 @@ passport.use('facebook', new FacebookStrategy({
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
-    let t=jwt.sign({id:profile.id},'secret')
+    let t=enc.Encrypt({id:profile.id})
     req.token=t
     db.collection("users").doc(profile.id).get().then(doc=>{
       if(!doc.exists){
@@ -90,7 +90,7 @@ passport.use('twitter', new TwitterStrategy({
     passReqToCallback : true
   },
   function(req, token, tokenSecret, profile, cb) {
-    let t=jwt.sign({id:profile.id},'secret')
+    let t=enc.Encrypt({id:profile.id})
     req.token=t
     db.collection("users").doc(profile.id).get().then(doc=>{
       if(!doc.exists){
@@ -113,7 +113,7 @@ passport.use('github', new GitHubStrategy({
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
-    let t=jwt.sign({id:profile.id},'secret')
+    let t=enc.Encrypt({id:profile.id})
     req.token=t
     db.collection("users").doc(profile.id).get().then(doc=>{
       if(!doc.exists){
