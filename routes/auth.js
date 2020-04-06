@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router()
 const passport=require('passport')
-const enc = require('iv-encrypt');
+const objEncDec = require('object-encrypt-decrypt')
 
 const admin=require('../config/firebase')
 let db = admin.firestore();
@@ -37,7 +37,7 @@ router.get('/amazon/redirect',passport.authenticate('amazon',{session:false}),(r
 })
 
 router.post('/get',(req,res)=>{
-    let decoded = enc.Decrypt(req.body.token);
+    let decoded = objEncDec.decrypt(req.body.token);
     db.collection("users").doc(decoded.id).get().then(doc=>{
         res.send(doc.data())
     })
