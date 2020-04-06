@@ -16,7 +16,7 @@ const AmazonStrategy=require('passport-amazon').Strategy
 passport.use('amazon', new AmazonStrategy({
   clientID: 'amzn1.application-oa2-client.ffe2741dc30549ca845e9ea54dce8f3c',
   clientSecret: '2cb7525d10c1b1b5c122b36e59fcc4bc0a468ee989cbcb5e4ff584fbf3b5ec5f',
-  callbackURL: "http://localhost:3000/auth/amazon/redirect",
+  callbackURL: "https://passport-oauth.herokuapp.com/auth/amazon/redirect",
   scope:'profile',
   passReqToCallback : true
 },
@@ -40,7 +40,7 @@ function(req, accessToken, refreshToken, profile, done) {
 passport.use('google', new GoogleStrategy({
     clientID: '354006049453-39fb49v7pe924atugpbs0rqmd6ihpt60.apps.googleusercontent.com',
     clientSecret: 'uNd9QT08AEajRrRprZsT93gf',
-    callbackURL: "http://localhost:3000/auth/google/redirect",
+    callbackURL: "https://passport-oauth.herokuapp.com/auth/google/redirect",
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
@@ -63,7 +63,7 @@ passport.use('google', new GoogleStrategy({
 passport.use('facebook', new FacebookStrategy({
     clientID: '1521622441333392',
     clientSecret: 'd81134dcc3595d541d1fa0f7c8524cc4',
-    callbackURL: "http://localhost:3000/auth/facebook/redirect",
+    callbackURL: "https://passport-oauth.herokuapp.com/auth/facebook/redirect",
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
@@ -86,7 +86,7 @@ passport.use('facebook', new FacebookStrategy({
 passport.use('twitter', new TwitterStrategy({
     consumerKey: 'u3uAumHopMaCYAHsaYk2UV7EK',
     consumerSecret: 'KNo36ZC8PmOKxpFlPAXmjWt1lDwSIzSxuDNfZdbjh2XEn9jLFO',
-    callbackURL: "http://localhost:3000/auth/twitter/redirect",
+    callbackURL: "https://passport-oauth.herokuapp.com/auth/twitter/redirect",
     passReqToCallback : true
   },
   function(req, token, tokenSecret, profile, cb) {
@@ -109,7 +109,7 @@ passport.use('twitter', new TwitterStrategy({
 passport.use('github', new GitHubStrategy({
     clientID: '702c3604c19a2cee9ac5',
     clientSecret: '68a2575c551bee76bf20c1e640e566b71fdc81c5',
-    callbackURL: "http://localhost:3000/auth/github/redirect",
+    callbackURL: "https://passport-oauth.herokuapp.com/auth/github/redirect",
     passReqToCallback : true
   },
   function(req, accessToken, refreshToken, profile, cb) {
@@ -144,7 +144,7 @@ passport.use('github', new GitHubStrategy({
 // passport.use('instagram', new InstagramStrategy({
 //     clientID: '498566144381400',
 //     clientSecret: '92ce6186c01f3aa53cc680ea25d0815c',
-//     callbackURL: "http://localhost:3000/auth/instagram/redirect"
+//     callbackURL: "https://passport-oauth.herokuapp.com/auth/instagram/redirect"
 //   },
 //   function(accessToken, refreshToken, profile, done) {
 //     console.log(profile)
